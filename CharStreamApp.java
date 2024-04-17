@@ -1,19 +1,24 @@
-import java.io.File;
-import java.io.FileInputStream; import java.io.FileOutputStream;
-import java.util.zip.DeflaterOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
-
-public class D { public static void main(String args[]) {
-try {
-File filein = new File("C:/Java/Hello.txt"); FileInputStream finRead = new FileInputStream(filein);
-File fileout = new File("C:/Java/DeflatedMain.dfl"); FileOutputStream foutWrite = new FileOutputStream(fileout);
-DeflaterOutputStream deflWrite = new DeflaterOutputStream(foutWrite); System.out.println("Original file size " + filein.length());
-// Reading and writing the compressed data int bread = 0;
-while ((bread = finRead.read()) != -1) { deflWrite.write(bread);
-}
-// Closing objects deflWrite.close(); finRead.close();
-System.out.println("File size after compression " + fileout.length());
-} catch (Exception e) { e.printStackTrace();
-}
-}
-}
+public class CharStreamApp {      
+ public static void main(String[] args) throws IOException {
+        FileReader inObjStream = null;
+        FileWriter outObjStream = null;
+        try {
+   inObjStream = new FileReader("c:/java codes/hello.txt");
+   outObjStream = new FileWriter("charoutputagain.txt");
+            int ch;
+            while ((ch = inObjStream.read()) != -1) {
+                outObjStream.write(ch);
+           System.out.println("written");
+            }
+            outObjStream.close();
+        } finally {
+            if (inObjStream != null) {
+                inObjStream.close();
+            }
+    }
+}         
+}   
